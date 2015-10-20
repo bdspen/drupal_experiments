@@ -1,0 +1,5 @@
+name = Hello
+description = Display hello to NEW user.
+package = Epicodus Examples
+core = 7.x
+files[] = hello_user.module

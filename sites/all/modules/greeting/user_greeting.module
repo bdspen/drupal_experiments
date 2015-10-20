@@ -1,0 +1,49 @@
+<?php
+function user_greeting_menu() {
+    $items = array();
+    $items['hello_auth'] = array(
+        'title' => 'Hello Auth!',
+        'page callback' => 'say_hello_auth',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK
+    );
+    $items['hello_admin'] = array(
+        'title' => 'Hello Admin!',
+        'page callback' => 'say_hello_admin',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK
+    );
+    $items['farewell'] = array(
+        'title' => 'Farewell Friend!',
+        'page callback' => 'say_farewell',
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM
+    );
+    return $items;
+}
+function say_hello_auth() {
+    return '<p>Hello my dear AUTHENTICATED USER!</p>';
+}
+function say_hello_admin() {
+    return '<p>Hello my dear ADMIN!</p>';
+}
+function say_farewell() {
+    return '<p>Fare thee well my dear friend!</p>';
+}
+function user_greeting_user_login(){
+    global $user;
+    if(in_array('administrator', array_values($user->roles))) {
+      $_GET['destination'] = 'hello_admin';
+      return "/greeting";
+    }else{
+      $_GET['destination'] = 'hello_auth';
+      return "/greeting";
+    }
+}
+
+function user_greeting_user_logout(){
+    $_GET['destination'] = 'farewell';
+}
+
+//look here to see user roles
+// http://ryanszrama.com/blog/10-25-2007/checking-if-drupal-user-has-role

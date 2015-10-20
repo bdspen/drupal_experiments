@@ -1,0 +1,17 @@
+<?php
+function comment_buddy_menu() {
+    $items = array();
+    $items['hello_friend'] = array(
+        'title' => 'Hello Friend!',
+        'page callback' => 'say_hello',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK
+    );
+};
+
+function drupal_set_message("Hi There"){
+    $_GET['destination'] = 'hello_friend';
+};
+function hook_comment_update($comment) {
+  drupal_set_message("Updated");
+};
