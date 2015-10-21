@@ -1,0 +1,79 @@
+<?php
+
+    function queen_attack_menu()
+    {
+        $items = array();
+        $items['queen_attack'] = array(
+            'title' => 'Queen Attack',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('queen_attack_form'),
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+
+        $items['queen_attack_success'] = array(
+            'title' => 'Queen wins!',
+            'page callback' => 'queen_attack_success',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
+        );
+
+        $item['queen_attack_fails'] = array(
+            'title' => 'You win! Queen loses.',
+            'page callback' => 'queen_attack_fails',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
+        );
+        return $items;
+    }
+
+    function queen_attack_form()
+    {
+        $options = array(1 => '1', 2 =>'2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8');
+        $form['queenX_location'] = array(
+            '#title' => 'Queen X',
+            '#type' => 'select',
+            '#description' => 'X location for the Queen',
+            '#options' => $options,
+        );
+
+        $form['queenY_location'] = array(
+            '#title' => 'Queen Y',
+            '#type' => 'select',
+            '#description' => 'Y location for the Queen',
+            '#options' => $options,
+        );
+
+        $form['userX_location'] = array(
+            '#title' => 'User X',
+            '#type' => 'select',
+            '#description' => 'X location for the user',
+            '#options' => $options,
+        );
+
+        $form['userY_location'] = array(
+            '#title' => 'User Y',
+            '#type' => 'select',
+            '#description' => 'Y location for the user',
+            '#options' => $options,
+        );
+    }
+
+    function queen_attack()
+    {
+        $diffX = $queenX - $userX;
+        $diffY = $queenY - $userY;
+
+        
+
+
+
+
+
+
+
+
+
+
+
+    }

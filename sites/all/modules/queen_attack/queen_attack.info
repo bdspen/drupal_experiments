@@ -1,0 +1,5 @@
+name = Queen Attack
+description = Allows user to input coordinates to determine whether the Queen chess piece can attack or not
+package = My First Modules
+core = 7.x
+files[] = queen_attack.module

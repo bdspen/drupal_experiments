@@ -9,7 +9,8 @@ function ping_pong_menu() {
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
     );
-        $items['ping_pong_success_page'] = array(
+
+    $items['ping_pong_success_page'] = array(
         'title' => 'Success',
         'page callback' => 'ping_pong_success',
         'access callback' => TRUE,
