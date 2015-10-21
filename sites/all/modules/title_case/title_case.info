@@ -1,0 +1,5 @@
+name = Title Case
+description = Displays a user's input in all capital letters
+package = My First Modules
+core = 7.x
+files[] = title_case.module

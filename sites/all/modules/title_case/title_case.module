@@ -1,0 +1,79 @@
+<?php
+
+    function title_case_menu()
+    {
+        $items = array();
+        $items['title_case'] = array(
+            'title' => 'Convert your text to capital letters',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('title_case_form'),
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+
+        $items['title_case_success_page'] = array(
+            'title' => 'ALL CAPS',
+            'page callback' => 'title_case_success',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
+        );
+
+        return $items;
+    }
+
+    function title_case_form()
+    {
+        $form['user_input'] = array(
+            '#title' => 'Type Something',
+            '#type' => 'textfield',
+            '#description' => t('Enter the text that you would like converted to capital letters'),
+        );
+
+        $form['submit'] = array(
+            '#type' => 'submit',
+            '#value' => 'Go',
+        );
+
+        // $form['submit'] = array(
+        //     '#type' => 'submit',
+        //     '#value' => 'Calculate Sum',
+        // );
+
+        return $form;
+    }
+
+    function title_case_form_submit($form, &$form_state)
+    {
+        $user_input = $form_state['values']['user_input'];
+        $upper_case = strtoupper($user_input);
+
+        $_SESSION['upper_case'] = $upper_case;
+        $form_state['redirect'] = 'title_case_success_page';
+    }
+
+    function title_case_success()
+    {
+        $answer = $_SESSION['upper_case'];
+        return $answer;
+    }
+
+
+
+
+
+
+
+    // function sum_form_submit($form, &$form_state) {
+    //     $first_number = $form_state['values']['left_number'];
+    //     $second_number = $form_state['values']['right_number'];
+    //     $sum = $first_number + $second_number;
+    //     $_SESSION['sum_output'] = $sum;
+    //
+    //
+    //     $form_state['redirect'] = 'sum_success_page';
+    // }
+    //
+    // function sum_success() {
+    //     $answer = $_SESSION['sum_output'];
+    //     return 'You calculated a sum! The answer is: ' . $answer;
+    // }
