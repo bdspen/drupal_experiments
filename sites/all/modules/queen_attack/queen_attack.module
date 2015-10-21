@@ -11,19 +11,19 @@
             'type' => MENU_NORMAL_ITEM,
         );
 
-        $items['queen_attack_success'] = array(
-            'title' => 'Queen wins!',
-            'page callback' => 'queen_attack_success',
+        $items['queen_attack_results'] = array(
+            'title' => 'Results!',
+            'page callback' => 'queen_attack_results',
             'access callback' => TRUE,
             'type' => MENU_CALLBACK,
         );
 
-        $item['queen_attack_fails'] = array(
-            'title' => 'You win! Queen loses.',
-            'page callback' => 'queen_attack_fails',
-            'access callback' => TRUE,
-            'type' => MENU_CALLBACK,
-        );
+        // $item['queen_attack_fails'] = array(
+        //     'title' => 'You win! Queen loses.',
+        //     'page callback' => 'queen_attack_fails',
+        //     'access callback' => TRUE,
+        //     'type' => MENU_CALLBACK,
+        // );
         return $items;
     }
 
@@ -57,23 +57,65 @@
             '#description' => 'Y location for the user',
             '#options' => $options,
         );
+
+        $form['submit'] = array(
+            '#type' => 'submit',
+            '#value' => 'ATTACK',
+        );
+
+        return $form;
     }
 
-    function queen_attack()
+    function queen_attack_form_submit($form, &$form_state)
     {
+        $queenX = $form_state['values']['queenX_location'];
+        $queenY = $form_state['values']['queenY_location'];
+        $userX = $form_state['values']['userX_location'];
+        $userY = $form_state['values']['userY_location'];
+
         $diffX = $queenX - $userX;
         $diffY = $queenY - $userY;
+        $isEqual = false;
 
-        
+        if ($diffX == $diffY){
+            $isEqual = true;
+        }
 
+        if ($queenX == $userX || $queenY == $userY){
+            $isEqual = true;
+        } else {
+            $isEqual = false;
+        }
 
+        $_SESSION['result'] = $isEqual;
 
+        $form_state['redirect'] = 'queen_attack_results';
 
-
-
-
-
-
-
+        // var_dump($isEqual);
+        // if ($isEqual == true) {
+        //     $form_state['redirect'] = 'queen_attack_success';
+        // } else {
+        //     $form_state['redirect'] = 'queen_attack_fails';
+        // }
 
     }
+
+    function queen_attack_results()
+    {
+        $winner = $_SESSION['result'];
+        if ($winner == true) {
+        return '<p>Queen wins hombre</p>';
+    } else if ($winner == false) {
+        return '<p>the queen is dead you are the weiner</p>';
+    }
+    }
+
+    // function queen_attack_fails()
+    // {
+    //     $winner = $_SESSION['queen_attack_results'];
+    //     var_dump($winner);
+    //     var_dump($isEqual);
+    //     if ($winner == false) {
+    //         return '<p>The Queen Didnt get ya</p>';
+    //     }
+    // }
