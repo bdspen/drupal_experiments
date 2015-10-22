@@ -77,8 +77,8 @@
         $userX = $form_state['values']['userX_location'];
         $userY = $form_state['values']['userY_location'];
 
-        $diffX = $queenX - $userX;
-        $diffY = $queenY - $userY;
+        $diffX = abs($queenX - $userX);
+        $diffY = abs($queenY - $userY);
         $isEqual = false;
 
         if ($diffX == $diffY){
