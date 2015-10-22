@@ -34,6 +34,7 @@
             '#title' => 'Queen X',
             '#type' => 'select',
             '#description' => 'X location for the Queen',
+            '#element_validate' => array('element_validate_number', 'element_validate_range'),
             '#options' => $options,
         );
 
@@ -41,6 +42,7 @@
             '#title' => 'Queen Y',
             '#type' => 'select',
             '#description' => 'Y location for the Queen',
+            '#element_validate' => array('element_validate_number', 'element_validate_range'),
             '#options' => $options,
         );
 
@@ -48,6 +50,7 @@
             '#title' => 'User X',
             '#type' => 'select',
             '#description' => 'X location for the user',
+            '#element_validate' => array('element_validate_number'),
             '#options' => $options,
         );
 
@@ -55,6 +58,7 @@
             '#title' => 'User Y',
             '#type' => 'select',
             '#description' => 'Y location for the user',
+            '#element_validate' => array('element_validate_number'),
             '#options' => $options,
         );
 
@@ -79,11 +83,9 @@
 
         if ($diffX == $diffY){
             $isEqual = true;
-        }
-
-        if ($queenX == $userX || $queenY == $userY){
+        }else if ($queenX == $userX || $queenY == $userY){
             $isEqual = true;
-        } else {
+        }else {
             $isEqual = false;
         }
 
@@ -104,10 +106,10 @@
     {
         $winner = $_SESSION['result'];
         if ($winner == true) {
-        return '<p>Queen wins hombre</p>';
-    } else if ($winner == false) {
-        return '<p>the queen is dead you are the weiner</p>';
-    }
+            return '<p>Queen wins hombre</p>';
+        } else if ($winner == false) {
+            return '<p>the queen is dead you are the weiner</p>';
+        }
     }
 
     // function queen_attack_fails()
