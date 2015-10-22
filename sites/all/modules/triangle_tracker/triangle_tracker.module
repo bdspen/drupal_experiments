@@ -81,8 +81,6 @@
 
     function triangle_tracker_form_submit($form, &$form_state)
     {
-        $triangle_results = "Howdy, your function isn't working!";
-        drupal_set_message($triangle_results);
         $s1 = $form_state['values']['side1'];
         $s2 = $form_state['values']['side2'];
         $s3 = $form_state['values']['side3'];
@@ -93,8 +91,7 @@
                 $triangle_results = 'an isosceles triangle!';
             } else if (($s1 !== $s2) && ($s2 !== $s3)) {
                 $triangle_results = 'a scalene triangle!';
-            } 
-        drupal_set_message($s1);
+            }
         $_SESSION['triangle_result'] = $triangle_results;
         $form_state['redirect'] = 'triangle_tracker_result';
 
