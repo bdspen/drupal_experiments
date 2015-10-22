@@ -26,7 +26,7 @@
             '#title' => 'Side 1',
             '#type' => 'textfield',
             '#description' => 'Side 1 of the triangle',
-            '#element_validate' => array('element_validate_number'),
+            '#element_validate' => array('element_validate_number', 'triangle_validate_range'),
             '#required' => TRUE,
         );
 
@@ -34,7 +34,7 @@
             '#title' => 'Side 2',
             '#type' => 'textfield',
             '#description' => 'Side 2 of the triangle',
-            '#element_validate' => array('element_validate_number'),
+            '#element_validate' => array('element_validate_number', 'triangle_validate_range'),
             '#required' => TRUE,
         );
 
@@ -42,7 +42,7 @@
             '#title' => 'Side 3',
             '#type' => 'textfield',
             '#description' => 'Side 3 of the triangle',
-            '#element_validate' => array('element_validate_number'),
+            '#element_validate' => array('element_validate_number', 'triangle_validate_range'),
             '#required' => TRUE,
         );
         $form['submit'] = array(
@@ -64,6 +64,14 @@
             $form['submit']['#validate'][] = 'triangle_tracker_form_validate';
         }
     }
+
+    function triangle_validate_range($element)
+    {
+        if ($element['#value'] <= 1){
+            form_error($element, t('Number must be at least 1.'));
+        }
+    }
+
 
     function triangle_tracker_form_validate($form, &$form_state){
         $side1 = $form_state['values']['side1'];
