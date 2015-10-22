@@ -78,3 +78,30 @@
             form_set_error('side3', 'Side 3 is too long to make a triangle with Side 1 and Side 2.');
         }
     }
+
+    function triangle_tracker_form_submit($form, &$form_state)
+    {
+        $triangle_results = "Howdy, your function isn't working!";
+        drupal_set_message($triangle_results);
+        $s1 = $form_state['values']['side1'];
+        $s2 = $form_state['values']['side2'];
+        $s3 = $form_state['values']['side3'];
+
+        if (($s1 === $s2) && ($s2 === $s3)) {
+                $triangle_results = 'an equilateral triangle!';
+            } else if (($s1 === $s2) && ($s1 !== $s3) || ($s2 === $s3) && ($s2 !== $s1) || ($s1 === $s3) && ($s1 !== $s2)) {
+                $triangle_results = 'an isosceles triangle!';
+            } else if (($s1 !== $s2) && ($s2 !== $s3)) {
+                $triangle_results = 'a scalene triangle!';
+            } 
+        drupal_set_message($s1);
+        $_SESSION['triangle_result'] = $triangle_results;
+        $form_state['redirect'] = 'triangle_tracker_result';
+
+    }
+
+    function triangle_tracker_result()
+    {
+        $answer = $_SESSION['triangle_result'];
+        return 'Your triangle is ' . $answer . '!';
+    }
