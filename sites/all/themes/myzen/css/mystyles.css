@@ -3,7 +3,13 @@
   width: 100%;
 }
 
+/*@font-face{
+  font-family: Green Fuz;
+  src: url('Green-Fuz/green_fuz.otf');
+}*/
+
 .header h1 {
+  font-family: Helvetica;
   background-color: white;
 }
 
@@ -11,10 +17,20 @@
   display: none;
 }
 
-#content .column {
+/*#content .column {
   background-image: url("images/frankenstein.jpg");
+}*/
+
+.region .region-mine {
+  padding-top: 10%;
 }
 
-#block-block-1 {
+#block-block-4 {
   text-align: center;
+  /*padding-top: 20%;*/
+}
+
+#block-block-4 .block-title {
+  padding-bottom: 10%;
+  margin-bottom: 10%;
 }

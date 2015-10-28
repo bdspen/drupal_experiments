@@ -1,0 +1,21 @@
+#page #main {
+  background-image: url(/sites/default/files/sweaver/sweaver_image_2.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: 100% 0%;
+}
+
+.region #block-block-4 {
+  background-image: url(/sites/default/files/sweaver/sweaver_image_3.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+#block-block-4 h2 {
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+}
+
