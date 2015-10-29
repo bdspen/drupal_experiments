@@ -1702,6 +1702,24 @@ tr.selected td {
   background-image: url('../images/progress.gif?1446133351');
 }
 
+/* line 1, ../sass/components/_main-nav.scss */
+#navigation {
+  background: #b0ae9e;
+}
+/* line 5, ../sass/components/_main-nav.scss */
+#navigation .links a, #navigation .links a:visited {
+  color: #fafeff;
+  text-decoration: none;
+}
+/* line 9, ../sass/components/_main-nav.scss */
+#navigation .links a:hover, #navigation .links a:visited:hover {
+  color: #424345;
+  -moz-transition: color, 0.5s, ease-out, 0.5s;
+  -o-transition: color, 0.5s, ease-out, 0.5s;
+  -webkit-transition: color, 0.5s, ease-out, 0.5s;
+  transition: color, 0.5s, ease-out, 0.5s;
+}
+
 /**
  * @file
  * Print styling
