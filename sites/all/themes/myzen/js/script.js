@@ -18,6 +18,20 @@ Drupal.behaviors.my_custom_behavior = {
   attach: function(context, settings) {
 
     // Place your code here.
+    $('.results').click(function(){
+
+        console.log("i'm loaded");
+        if ($(this) == "Queen wins hombre"){
+          alert("queen won");
+        } else {
+          alert("you win");
+        }
+    });
+
+    // $('.results').click(function(){
+    //   console.log("yello");
+    // });
+
 
   }
 };

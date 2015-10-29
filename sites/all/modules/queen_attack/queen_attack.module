@@ -106,9 +106,9 @@
     {
         $winner = $_SESSION['result'];
         if ($winner == true) {
-            return '<p>Queen wins hombre</p>';
+            return '<p class = "results">Queen wins hombre</p>';
         } else if ($winner == false) {
-            return '<p>the queen is dead you are the weiner</p>';
+            return '<p class = "results">the queen is dead you are the weiner</p>';
         }
     }
 
