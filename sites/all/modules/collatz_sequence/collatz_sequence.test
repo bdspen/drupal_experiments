@@ -1,0 +1,15 @@
+<?php
+    // class CollatzSequenceTests extends DrupalUnitTestCase {
+    //     public static function getInfo(){
+    //         return array(
+    //             'name' => 'Collatz Sequence unit tests',
+    //             'description' => 'Test that collatz_sequence works',
+    //             'group' => 'Examples',
+    //         );
+    //     }
+    //
+    //     function testoutput(){
+    //         $result =
+    //     }
+    // }
+?>

@@ -3,3 +3,5 @@ description = Calculates the Collatz Mathematical Sequence.
 package = Epicodus Examples
 core = 7.x
 files[] = collatz_sequence.module
+files[] = collatz_sequence.test
+dependencies[] = simpletest
