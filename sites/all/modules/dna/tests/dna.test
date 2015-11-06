@@ -1,0 +1,85 @@
+<?php
+class dnaUserTests extends DrupalWebTestCase {
+    public static function getInfo()
+    {
+      return array(
+        // The human readable name of the test case.
+        'name' => 'Dna Tests',
+        // A short description of the tests this case performs.
+        'description' => 'Tests for the dna module.',
+        // The group that this case belongs too, used for grouping tests together
+        // in the UI.
+        'group' => 'DNA Group',
+        );
+    }
+    public function setUp()
+    {
+        parent::setUp(array('site_user'));
+        $user = $this->drupalCreateAdminUser();
+        $this->drupalLogin($user);
+        $this->createTestPage();
+    }
+    public function createTestingPage()
+    {
+        $info = array();
+        $info['dna_input'] = "ATGC";
+        $this->drupalPost('dna', $info, t('Find Match'));
+    }
+    public function drupalCreateAdminUser(array $permissions = array())
+    {
+         $roles = user_roles();
+         $index = array_search('administrator', $roles);
+         $user = $this->drupalCreateUser($permissions);
+         $user->roles[$index] = 'administrator';
+         return user_save($user);
+    }
+    // public function testNewPage()
+    // {
+    //     $this->assertText("TACG", 'The result is correct.');
+    // }
+
+}
+class dnaTestCase extends DrupalUnitTestCase
+{
+    public static function getInfo()
+    {
+        return array(
+        'name' => 'dna unit tests',
+        'description' => 'Test that dna_switch functions.',
+        'group' => 'dna Tests',
+        );
+    }
+    function test_dna_switch()
+    {
+        $description = "value 'A' should return 'T'.";
+        $input = 'A';
+        $result = dna_switch($input);
+        $output = 'T';
+        $this->assertTrue($result, $output, $description);
+
+        $description = 'Aalue "T" should return "A"';
+        $input = 'T';
+        $result = dna_switch($input);
+        $output = 'A';
+        $this->assertTrue($result, $output, $description);
+
+        $description = 'value "G" should return "C"';
+        $input = 'G';
+        $result = dna_switch($input);
+        $output = 'C';
+        $this->assertTrue($result, $output, $description);
+
+        $description = 'value "C" should return "G"';
+        $input = 'C';
+        $result = dna_switch($input);
+        $output = 'G';
+        $this->assertTrue($result, $output, $description);
+
+        $description = 'value "ACGT" should return "TGCA"';
+        $input = 'ACGT';
+        $result = dna_switch($input);
+        $output = 'TGCA';
+        $this->assertTrue($result, $output, $description);
+
+    }
+}

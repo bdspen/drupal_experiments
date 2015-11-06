@@ -1,0 +1,6 @@
+name = DNA
+description = Generates half of the DNA helix
+core = 7.x
+files[] = dna.module
+files[] = tests/dna.test
+dependencies[] = simpletest

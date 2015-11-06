@@ -1,0 +1,65 @@
+<?php
+function dna_menu() {
+    $items['dna'] = array(
+        'title' => 'DNA',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('dna_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['dna_success'] = array(
+        'title' => 'The DNA pair',
+        'page callback' => 'dna_show',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+function dna_form(){
+    $form['dna_input'] = array(
+        '#title'=> 'Dna Half',
+        '#type' => 'textfield',
+        '#description' => t('Enter the dna helix. Only A,C,G,T allowed'),
+        '#element_validate' => array('element_validate_dna'),
+        '#required' => TRUE,
+    );
+
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Calculate Sequence'
+    );
+    return $form;
+}
+
+function element_validate_dna($element) {
+    $dna = array("G", "A", "T", "C");
+    $split = str_split($element['#value']);
+    foreach ($split as $letter) {
+        if (!in_array($letter, $dna)) {
+            form_error($element, t('Only A, C, G, or T are allowed'));
+        }
+    }
+}
+
+function dna_switch($input){
+    $input = str_split($input);
+    $dna = array("C" => "G", "A" => "T", "G" => "C", "T" => "A");
+    $result = array();
+    foreach ($input as $letter) {
+        $key = array_search($letter, $dna);
+        array_push($result, $key);
+    }
+    return implode("", $result);
+}
+
+function dna_form_submit($form, &$form_state) {
+    $input = $form_state['values']['dna_input'];
+    $result = dna_switch($input);
+    $_SESSION['dna_result'] = $result;
+    $form_state['redirect'] = 'dna_success';
+}
+
+function dna_show(){
+    $output = $_SESSION['dna_result'];
+    return "<h1>".$output."</h1>";
+}

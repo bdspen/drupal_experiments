@@ -1,0 +1,1 @@
+[06-Nov-2015 13:47:43 America/Los_Angeles] PHP Fatal error:  Call to undefined method dnaUserTests::drupalCreateAdminUser() in /Users/ben/Desktop/drupal_experiments/sites/all/modules/dna/tests/dna.test on line 18
