@@ -45,7 +45,6 @@
             $number / 2;
         }else{
             $number * 3 + 1;
-            $number
         }
         array_push($result, $number);
         // $_SESSION['sequence_output'] = $result;
