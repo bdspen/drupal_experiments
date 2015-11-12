@@ -1,4 +1,9 @@
 
+**  branch codereview11/6/15.
+* Drupal User login: admin, root
+* DB name: newdb login: user1 password: root  **
+
+
 CONTENTS OF THIS FILE
 ---------------------
 
